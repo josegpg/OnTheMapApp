@@ -52,6 +52,10 @@ extension UdacityClient {
         static let AccountKey = "key"
         static let SessionId = "id"
         
+        // MARK: Login Error
+        static let Status = "status"
+        static let Error = "error"
+        
         // MARK: User profile
         static let User = "user"
         static let FirstName = "first_name"

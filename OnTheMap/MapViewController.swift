@@ -109,8 +109,11 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func addPinAction(sender: UIBarButtonItem) {
+        SpecialActivityIndicator.sharedInstance().show(view, msg: "Checking..")
         ParseClient.sharedInstance().getQueryStudentLocation() { success, error in
             dispatch_async(dispatch_get_main_queue()) {
+                SpecialActivityIndicator.sharedInstance().hide()
+                
                 if success { self.checkPinAndAdd() }
                 else {
                     self.showGeneralAlert("Error", message: "Connection to server failed. Please try again", buttonTitle: "Ok")
@@ -120,8 +123,11 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func logoutAction(sender: UIBarButtonItem) {
+        SpecialActivityIndicator.sharedInstance().show(view, msg: "Loggin out")
         UdacityClient.sharedInstance().deleteToLogout() { success, error in
             dispatch_async(dispatch_get_main_queue()) {
+                SpecialActivityIndicator.sharedInstance().hide()
+                
                 if success { self.completeLogout() }
                 else {
                     self.showGeneralAlert("Error", message: "Connection to server failed. Please try again", buttonTitle: "Ok")

@@ -68,14 +68,13 @@ class LoginViewController: UIViewController {
         { (success, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.blockLoginButtons(false)
+                SpecialActivityIndicator.sharedInstance().hide()
                 
                 if success {
                     self.completeLogin()
                 } else {
-                    self.showGeneralAlert("Error", message: "Account not found or invalid credentials", buttonTitle: "Ok")
+                    self.showGeneralAlert("Error", message: error!.localizedDescription, buttonTitle: "Ok")
                 }
-                
-                SpecialActivityIndicator.sharedInstance().hide()
             }
         }
     }
@@ -95,14 +94,13 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
         UdacityClient.sharedInstance().postToCreateFacebookSession(accessToken) { (success, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.blockLoginButtons(false)
+                SpecialActivityIndicator.sharedInstance().hide()
                 
                 if success {
                     self.completeLogin()
                 } else {
                     self.showGeneralAlert("Error", message: "Error logging in with Facebook. Try again", buttonTitle: "Ok")
                 }
-                
-                SpecialActivityIndicator.sharedInstance().hide()
             }
         }
     }

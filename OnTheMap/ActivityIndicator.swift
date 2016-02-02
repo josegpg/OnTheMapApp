@@ -25,6 +25,7 @@ class SpecialActivityIndicator {
         let strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
         let messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let backGroundFrame = UIView(frame: view.frame)
         
         strLabel.text = msg
         strLabel.textColor = UIColor.whiteColor()
@@ -32,6 +33,7 @@ class SpecialActivityIndicator {
         messageFrame.layer.cornerRadius = 15
         messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
         
+        backGroundFrame.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         activityIndicator.startAnimating()
@@ -39,8 +41,10 @@ class SpecialActivityIndicator {
         messageFrame.addSubview(activityIndicator)
         messageFrame.addSubview(strLabel)
         
-        modalView = messageFrame
-        view.addSubview(messageFrame)
+        backGroundFrame.addSubview(messageFrame)
+        
+        modalView = backGroundFrame
+        view.addSubview(backGroundFrame)
     }
     
     func hide() {

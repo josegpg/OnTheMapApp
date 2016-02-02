@@ -78,14 +78,14 @@ class PinLocationViewController: UIViewController {
         blockButtons(true)
         ParseClient.sharedInstance().postToCreateStudentLocation(mapString, mediaUrl: mediaUrl, latitude: coords!.latitude, longitude: coords!.longitude) { success, error in
             dispatch_async(dispatch_get_main_queue()) {
+                SpecialActivityIndicator.sharedInstance().hide()
+                self.blockButtons(false)
+                
                 if success {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else  {
                     self.showGeneralAlert("Error", message: "Posting student location failed. Please try again", buttonTitle: "Ok")
                 }
-                
-                SpecialActivityIndicator.sharedInstance().hide()
-                self.blockButtons(false)
             }
         }
     }
@@ -95,14 +95,14 @@ class PinLocationViewController: UIViewController {
         blockButtons(true)
         ParseClient.sharedInstance().putToModifyStudentLocation(mapString, mediaUrl: mediaUrl, latitude: coords!.latitude, longitude: coords!.longitude) { success, error in
             dispatch_async(dispatch_get_main_queue()) {
+                SpecialActivityIndicator.sharedInstance().hide()
+                self.blockButtons(false)
+                
                 if success {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else  {
                     self.showGeneralAlert("Error", message: "Overwriting student location failed. Please try again", buttonTitle: "Ok")
                 }
-                
-                SpecialActivityIndicator.sharedInstance().hide()
-                self.blockButtons(false)
             }
         }
     }
@@ -128,6 +128,9 @@ class PinLocationViewController: UIViewController {
         CLGeocoder().geocodeAddressString(mapString) {
             (placemarks, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
+                SpecialActivityIndicator.sharedInstance().hide()
+                self.blockButtons(false)
+                
                 if let error = error {
                     self.showGeneralAlert("Error", message: "Forward geocoding failed: \(error.localizedDescription)", buttonTitle: "Ok")
                 } else if placemarks!.count > 0 {
@@ -136,9 +139,6 @@ class PinLocationViewController: UIViewController {
                     self.coords = location?.coordinate
                     self.showMap()
                 }
-                
-                SpecialActivityIndicator.sharedInstance().hide()
-                self.blockButtons(false)
             }
         }
     }

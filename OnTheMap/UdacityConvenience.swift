@@ -54,6 +54,8 @@ extension UdacityClient {
                             completionHandler(success: false, error: error)
                         }
                     }
+                } else if let errorResponse = ErrorLoginResponse(dictionary: JSONResult as! [String: AnyObject]) {
+                    completionHandler(success: false, error: UdacityClient.createError("login error", msg: errorResponse.errorMsg!))
                 } else {
                     completionHandler(success: false, error: UdacityClient.createError("postToCreateSession parsing", msg: "Could not parse postToCreateSession"))
                 }
