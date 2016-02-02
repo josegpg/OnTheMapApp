@@ -40,8 +40,11 @@ class LoginViewController: UIViewController {
     }
     
     func blockLoginButtons(block: Bool) {
-        facebookButton.userInteractionEnabled = !block
-        loginButton.userInteractionEnabled = !block
+        self.facebookButton.enabled = !block
+        self.facebookButton.userInteractionEnabled = !block
+            
+        self.loginButton.enabled = !block
+        self.loginButton.userInteractionEnabled = !block
     }
 
     // MARK: Actions
@@ -60,7 +63,7 @@ class LoginViewController: UIViewController {
         }
         
         blockLoginButtons(true)
-        
+        SpecialActivityIndicator.sharedInstance().show(view, msg: "Loggin in")
         UdacityClient.sharedInstance().postToCreateSession(emailTextField.text!, password: passwordTextField.text!)
         { (success, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
@@ -71,6 +74,8 @@ class LoginViewController: UIViewController {
                 } else {
                     self.showGeneralAlert("Error", message: "Account not found or invalid credentials", buttonTitle: "Ok")
                 }
+                
+                SpecialActivityIndicator.sharedInstance().hide()
             }
         }
     }
@@ -86,7 +91,7 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
     
     func loginWithFacebook(accessToken: String) {
         blockLoginButtons(true)
-        
+        SpecialActivityIndicator.sharedInstance().show(view, msg: "Loggin in")
         UdacityClient.sharedInstance().postToCreateFacebookSession(accessToken) { (success, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.blockLoginButtons(false)
@@ -96,6 +101,8 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
                 } else {
                     self.showGeneralAlert("Error", message: "Error logging in with Facebook. Try again", buttonTitle: "Ok")
                 }
+                
+                SpecialActivityIndicator.sharedInstance().hide()
             }
         }
     }

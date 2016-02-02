@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StudentLocationResponse {
+struct StudentLocationResponse {
     
     var uniqueKey : String!
     var firstName : String!
@@ -19,7 +19,7 @@ class StudentLocationResponse {
     var longitude : Float!
     var objectId : String!
     
-    class func parseResponseList(dictionaryList: [[String: AnyObject]]) -> [StudentLocationResponse] {
+    static func parseResponseList(dictionaryList: [[String: AnyObject]]) -> [StudentLocationResponse] {
         
         var studentLocationsList: [StudentLocationResponse] = []
         
@@ -32,9 +32,7 @@ class StudentLocationResponse {
         return studentLocationsList
     }
     
-    convenience init?(dictionary: [String : AnyObject]) {
-        
-        self.init()
+    init?(dictionary: [String : AnyObject]) {
         
         if let uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as? String {
             self.uniqueKey = uniqueKey

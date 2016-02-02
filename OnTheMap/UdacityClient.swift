@@ -10,13 +10,6 @@ import Foundation
 
 class UdacityClient : APIClient {
     
-    /* Authentication state */
-    var userInfo : UserInfoResponse?
-    
-    override init() {
-        super.init()
-    }
-    
     override func getCommonHeaders() -> [String : String] {
         return [
             "Accept" : "application/json",

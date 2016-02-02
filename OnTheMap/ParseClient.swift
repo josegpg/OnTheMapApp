@@ -10,13 +10,6 @@ import Foundation
 
 class ParseClient : APIClient {
     
-    var studentLocations : [StudentLocationResponse] = []
-    var studentLocationId : String?
-    
-    override init() {
-        super.init()
-    }
-    
     override func getCommonHeaders() -> [String : String] {
         return [
             "Accept" : "application/json",

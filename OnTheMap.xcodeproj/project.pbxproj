@@ -19,6 +19,9 @@
 		D135EF041C558B120031F809 /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135EF031C558B120031F809 /* OnTheMapUITests.swift */; };
 		D135EF181C55E39A0031F809 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135EF171C55E39A0031F809 /* UdacityClient.swift */; };
 		D135EF1A1C55E4D80031F809 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135EF191C55E4D80031F809 /* UdacityConstants.swift */; };
+		D137EC1E1C602E41000D98B6 /* ParseSessionVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D137EC1D1C602E41000D98B6 /* ParseSessionVariables.swift */; };
+		D137EC201C602FF6000D98B6 /* UdacitySessionVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D137EC1F1C602FF6000D98B6 /* UdacitySessionVariables.swift */; };
+		D137EC221C603657000D98B6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D137EC211C603657000D98B6 /* ActivityIndicator.swift */; };
 		D1889E5D1C59D1E300E9F935 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1889E5C1C59D1E300E9F935 /* UIViewControllerExtension.swift */; };
 		D1AA8C571C582CFF000E5F93 /* PinTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA8C561C582CFF000E5F93 /* PinTableViewController.swift */; };
 		D1AA8C591C583E4B000E5F93 /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA8C581C583E4B000E5F93 /* UserInfoResponse.swift */; };
@@ -72,6 +75,9 @@
 		D135EF051C558B130031F809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D135EF171C55E39A0031F809 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		D135EF191C55E4D80031F809 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		D137EC1D1C602E41000D98B6 /* ParseSessionVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseSessionVariables.swift; sourceTree = "<group>"; };
+		D137EC1F1C602FF6000D98B6 /* UdacitySessionVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacitySessionVariables.swift; sourceTree = "<group>"; };
+		D137EC211C603657000D98B6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		D1889E5C1C59D1E300E9F935 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		D1AA8C561C582CFF000E5F93 /* PinTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinTableViewController.swift; sourceTree = "<group>"; };
 		D1AA8C581C583E4B000E5F93 /* UserInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 			children = (
 				D1DF17D01C58919A00151094 /* PinTableViewCell.swift */,
 				D1889E5C1C59D1E300E9F935 /* UIViewControllerExtension.swift */,
+				D137EC211C603657000D98B6 /* ActivityIndicator.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -214,6 +221,7 @@
 				D135EF171C55E39A0031F809 /* UdacityClient.swift */,
 				D135EF191C55E4D80031F809 /* UdacityConstants.swift */,
 				D11FE9D71C56DB4100FB6D84 /* UdacityConvenience.swift */,
+				D137EC1F1C602FF6000D98B6 /* UdacitySessionVariables.swift */,
 				D11FE9D91C56E95700FB6D84 /* LoginResponse.swift */,
 				D1DF17BC1C58555B00151094 /* LogoutResponse.swift */,
 				D1AA8C581C583E4B000E5F93 /* UserInfoResponse.swift */,
@@ -227,6 +235,7 @@
 				D1DF17BE1C585CCB00151094 /* ParseClient.swift */,
 				D1DF17C01C585FF800151094 /* ParseConstants.swift */,
 				D1DF17C61C58833600151094 /* ParseConvenience.swift */,
+				D137EC1D1C602E41000D98B6 /* ParseSessionVariables.swift */,
 				D1DF17C21C58706F00151094 /* StudentLocationResponse.swift */,
 				D1DF17C81C588B9500151094 /* CreateLocationResponse.swift */,
 				D1DF17CA1C588BAD00151094 /* ModifyLocationResponse.swift */,
@@ -381,13 +390,16 @@
 				D1DF17C91C588B9500151094 /* CreateLocationResponse.swift in Sources */,
 				D135EF1A1C55E4D80031F809 /* UdacityConstants.swift in Sources */,
 				D1DF17CD1C58915300151094 /* PinLocationViewController.swift in Sources */,
+				D137EC201C602FF6000D98B6 /* UdacitySessionVariables.swift in Sources */,
 				D11FE9DA1C56E95700FB6D84 /* LoginResponse.swift in Sources */,
 				D1DF17CB1C588BAD00151094 /* ModifyLocationResponse.swift in Sources */,
 				D135EEE41C558B120031F809 /* AppDelegate.swift in Sources */,
 				D1DF17BD1C58555B00151094 /* LogoutResponse.swift in Sources */,
 				D11FE9D81C56DB4100FB6D84 /* UdacityConvenience.swift in Sources */,
+				D137EC221C603657000D98B6 /* ActivityIndicator.swift in Sources */,
 				D1DF17D11C58919A00151094 /* PinTableViewCell.swift in Sources */,
 				D1889E5D1C59D1E300E9F935 /* UIViewControllerExtension.swift in Sources */,
+				D137EC1E1C602E41000D98B6 /* ParseSessionVariables.swift in Sources */,
 				D1AA8C571C582CFF000E5F93 /* PinTableViewController.swift in Sources */,
 				D135EF181C55E39A0031F809 /* UdacityClient.swift in Sources */,
 				D1DF17C71C58833600151094 /* ParseConvenience.swift in Sources */,

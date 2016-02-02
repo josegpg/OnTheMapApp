@@ -44,7 +44,7 @@ class PinTableViewController: UIViewController {
     }
     
     func checkPinAndAdd() {
-        if let _ = ParseClient.sharedInstance().studentLocationId {
+        if let _ = ParseSessionVariables.sharedInstance().studentLocationId {
             studentLocationOverwriting = true
             showOverrideAlert()
         } else {
@@ -107,20 +107,20 @@ extension PinTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("pinTableCell") as! PinTableViewCell
-        cell.nameLabel.text = ParseClient.sharedInstance().studentLocations[indexPath.row].getFullName()
+        cell.nameLabel.text = ParseSessionVariables.sharedInstance().studentLocations[indexPath.row].getFullName()
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ParseClient.sharedInstance().studentLocations.count
+        return ParseSessionVariables.sharedInstance().studentLocations.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let toOpen = ParseClient.sharedInstance().studentLocations[indexPath.row].mediaUrl
+        let toOpen = ParseSessionVariables.sharedInstance().studentLocations[indexPath.row].mediaUrl
         UIApplication.sharedApplication().openURL(NSURL(string: toOpen)!)
     }
 

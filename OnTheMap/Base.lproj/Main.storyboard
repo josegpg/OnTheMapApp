@@ -625,11 +625,15 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="cancel2Button" destination="Z05-8f-tUx" id="hPH-hp-063"/>
+                        <outlet property="cancelButton" destination="g1o-hS-Em7" id="jg6-X4-Gcf"/>
+                        <outlet property="findButton" destination="MiF-IS-XGV" id="5Ns-f9-mty"/>
                         <outlet property="firstStepView" destination="2Lf-cw-5PJ" id="Q8j-9S-l3R"/>
                         <outlet property="mapStringField" destination="e2W-Ug-NfI" id="3ea-PZ-rA0"/>
                         <outlet property="mapView" destination="QIy-6r-1De" id="sIR-mo-svY"/>
                         <outlet property="mediaUrlField" destination="Bt7-UK-7qC" id="cdS-ML-N6H"/>
                         <outlet property="secondStepView" destination="8qL-ln-a0i" id="IbS-wG-9Ox"/>
+                        <outlet property="submitButton" destination="XN6-lS-wbF" id="Rme-mC-uUC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ib-o1-BQj" userLabel="First Responder" sceneMemberID="firstResponder"/>

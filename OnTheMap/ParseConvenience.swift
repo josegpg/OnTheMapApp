@@ -26,7 +26,7 @@ extension ParseClient {
                 completionHandler(success: false, error: error)
             } else if let results = JSONResult.valueForKey(JSONResponseKeys.Results) as? [[String:AnyObject]] {
                 // SUCCESS
-                self.studentLocations = StudentLocationResponse.parseResponseList(results)
+                ParseSessionVariables.sharedInstance().studentLocations = StudentLocationResponse.parseResponseList(results)
                 completionHandler(success: true, error: nil)
             } else {
                 // PARSING ERROR
@@ -37,7 +37,7 @@ extension ParseClient {
     
     func getQueryStudentLocation(completionHandler: (success: Bool, error: NSError?) -> Void) {
         
-        let userAccountId = UdacityClient.sharedInstance().userInfo!.accountID
+        let userAccountId = UdacitySessionVariables.sharedInstance().userInfo!.accountID
         let parameters: [String: AnyObject] = [
             ParameterKeys.Where : "{\"\(ParameterKeys.UniqueKey)\":\"\(userAccountId)\"}"
         ]
@@ -49,7 +49,7 @@ extension ParseClient {
             } else if let results = JSONResult.valueForKey(JSONResponseKeys.Results) as? [[String:AnyObject]] {
                 // SUCCESS
                 if let studentLocation = StudentLocationResponse.parseResponseList(results).first {
-                    self.studentLocationId = studentLocation.objectId
+                    ParseSessionVariables.sharedInstance().studentLocationId = studentLocation.objectId
                 }
                 completionHandler(success: true, error: nil)
             } else {
@@ -64,9 +64,9 @@ extension ParseClient {
     func postToCreateStudentLocation(mapString: String, mediaUrl: String, latitude: Double, longitude: Double, completionHandler: (success: Bool, error: NSError?) -> Void) {
         
         let jsonBody : [String:AnyObject] = [
-            ParseClient.JSONBodyKeys.FirstName : UdacityClient.sharedInstance().userInfo!.firstName,
-            ParseClient.JSONBodyKeys.LastName : UdacityClient.sharedInstance().userInfo!.lastName,
-            ParseClient.JSONBodyKeys.UniqueKey : UdacityClient.sharedInstance().userInfo!.accountID,
+            ParseClient.JSONBodyKeys.FirstName : UdacitySessionVariables.sharedInstance().userInfo!.firstName,
+            ParseClient.JSONBodyKeys.LastName : UdacitySessionVariables.sharedInstance().userInfo!.lastName,
+            ParseClient.JSONBodyKeys.UniqueKey : UdacitySessionVariables.sharedInstance().userInfo!.accountID,
             ParseClient.JSONBodyKeys.MapString : mapString,
             ParseClient.JSONBodyKeys.MediaUrl : mediaUrl,
             ParseClient.JSONBodyKeys.Latitude : latitude,
@@ -80,7 +80,7 @@ extension ParseClient {
                 completionHandler(success: false, error: error)
             } else if let response = CreateLocationResponse(dictionary: JSONResult as! [String: AnyObject]) {
                 // SUCCESS
-                self.studentLocationId = response.objectId
+                ParseSessionVariables.sharedInstance().studentLocationId = response.objectId
                 completionHandler(success: true, error: nil)
             } else {
                 // PARSING ERROR
@@ -99,7 +99,7 @@ extension ParseClient {
             ParseClient.JSONBodyKeys.Longitude : longitude
         ]
         
-        let url = ParseClient.subtituteKeyInMethod(Methods.ModifyStudentLocation, key: "id", value: ParseClient.sharedInstance().studentLocationId!)!
+        let url = ParseClient.subtituteKeyInMethod(Methods.ModifyStudentLocation, key: "id", value: ParseSessionVariables.sharedInstance().studentLocationId!)!
         
         taskForPUTMethod(url, parameters: [:], jsonBody: jsonBody) { JSONResult, error in
             

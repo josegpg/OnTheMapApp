@@ -22,7 +22,7 @@ extension UdacityClient {
             } else if let response = UserInfoResponse(dictionary: JSONResult as! [String : AnyObject]) {
                 // Store the user info including the accountID for later use
                 response.accountID = accountID
-                UdacityClient.sharedInstance().userInfo = response
+                UdacitySessionVariables.sharedInstance().userInfo = response
                 completionHandler(success: true, error: nil)
             } else {
                 completionHandler(success: false, error: UdacityClient.createError("getUserProfile parsing", msg: "Could not parse getUserProfile"))

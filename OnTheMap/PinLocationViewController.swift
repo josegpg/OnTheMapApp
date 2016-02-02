@@ -18,6 +18,11 @@ class PinLocationViewController: UIViewController {
     @IBOutlet weak var secondStepView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var cancel2Button: UIButton!
+    @IBOutlet weak var findButton: UIButton!
+    
     var coords: CLLocationCoordinate2D?
     var mapString: String = ""
     var mediaUrl: String = ""
@@ -33,6 +38,20 @@ class PinLocationViewController: UIViewController {
         mediaUrlField.delegate = self
         
         addKeyboardGestureRecognizer()
+    }
+    
+    func blockButtons(block: Bool) {
+        submitButton.enabled = !block
+        submitButton.userInteractionEnabled = !block
+        
+        findButton.enabled = !block
+        findButton.userInteractionEnabled = !block
+        
+        cancelButton.enabled = !block
+        cancelButton.userInteractionEnabled = !block
+        
+        cancel2Button.enabled = !block
+        cancel2Button.userInteractionEnabled = !block
     }
     
     func showMap() {
@@ -55,6 +74,8 @@ class PinLocationViewController: UIViewController {
     }
     
     func createStudentLocation() {
+        SpecialActivityIndicator.sharedInstance().show(view, msg: "Sending..")
+        blockButtons(true)
         ParseClient.sharedInstance().postToCreateStudentLocation(mapString, mediaUrl: mediaUrl, latitude: coords!.latitude, longitude: coords!.longitude) { success, error in
             dispatch_async(dispatch_get_main_queue()) {
                 if success {
@@ -62,11 +83,16 @@ class PinLocationViewController: UIViewController {
                 } else  {
                     self.showGeneralAlert("Error", message: "Posting student location failed. Please try again", buttonTitle: "Ok")
                 }
+                
+                SpecialActivityIndicator.sharedInstance().hide()
+                self.blockButtons(false)
             }
         }
     }
     
     func overrideStudentLocation() {
+        SpecialActivityIndicator.sharedInstance().show(view, msg: "Sending..")
+        blockButtons(true)
         ParseClient.sharedInstance().putToModifyStudentLocation(mapString, mediaUrl: mediaUrl, latitude: coords!.latitude, longitude: coords!.longitude) { success, error in
             dispatch_async(dispatch_get_main_queue()) {
                 if success {
@@ -74,6 +100,9 @@ class PinLocationViewController: UIViewController {
                 } else  {
                     self.showGeneralAlert("Error", message: "Overwriting student location failed. Please try again", buttonTitle: "Ok")
                 }
+                
+                SpecialActivityIndicator.sharedInstance().hide()
+                self.blockButtons(false)
             }
         }
     }
@@ -94,6 +123,8 @@ class PinLocationViewController: UIViewController {
             return
         }
         
+        SpecialActivityIndicator.sharedInstance().show(view, msg: "Geocoding")
+        blockButtons(true)
         CLGeocoder().geocodeAddressString(mapString) {
             (placemarks, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
@@ -105,6 +136,9 @@ class PinLocationViewController: UIViewController {
                     self.coords = location?.coordinate
                     self.showMap()
                 }
+                
+                SpecialActivityIndicator.sharedInstance().hide()
+                self.blockButtons(false)
             }
         }
     }

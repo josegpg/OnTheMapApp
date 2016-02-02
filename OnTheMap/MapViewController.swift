@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
     
         var annotations = [MKPointAnnotation]()
         
-        for location in ParseClient.sharedInstance().studentLocations {
+        for location in ParseSessionVariables.sharedInstance().studentLocations {
             
             let lat = CLLocationDegrees(location.latitude)
             let long = CLLocationDegrees(location.longitude)
@@ -73,7 +73,7 @@ class MapViewController: UIViewController {
     }
     
     func checkPinAndAdd() {
-        if let _ = ParseClient.sharedInstance().studentLocationId {
+        if let _ = ParseSessionVariables.sharedInstance().studentLocationId {
             studentLocationOverwriting = true
             showOverrideAlert()
         } else {
