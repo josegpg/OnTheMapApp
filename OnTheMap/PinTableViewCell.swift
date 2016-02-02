@@ -12,5 +12,6 @@ import UIKit
 class PinTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
     
 }

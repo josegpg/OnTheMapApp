@@ -108,6 +108,9 @@ extension PinTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("pinTableCell") as! PinTableViewCell
         cell.nameLabel.text = ParseSessionVariables.sharedInstance().studentLocations[indexPath.row].getFullName()
+        cell.urlLabel.text = ParseSessionVariables.sharedInstance().studentLocations[indexPath.row].mediaUrl
+        
+        cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.groupTableViewBackgroundColor() : UIColor.whiteColor()
         
         return cell
     }
